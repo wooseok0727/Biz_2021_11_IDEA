@@ -11,6 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-  <h1>우리나라만세</h1>
+  <h1>${NAME} 만세</h1>
 </body>
 </html>
