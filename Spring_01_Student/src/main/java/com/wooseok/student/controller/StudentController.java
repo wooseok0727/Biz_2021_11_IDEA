@@ -45,15 +45,15 @@ public class StudentController {
         @Primary 와 @Qualifier 를 적절히 사용하는 것이 가장 이상적
         @Primary 는 하나의 구현체만을 사용하게 하는 것
         @Qualifier 는 @Primary 보다 귀찮지만, 디테일하게 접근하고 사용할 수 있음
-        --> @Primary 보다 우선순위가 높다!
-        
-        예시: 코드에서 자주 사용하는 메인 데이터베이스 커넥션을 사용하는 빈이 있고,
-              코드에서 특별한 기능으로 가끔 사용하는 서브 데이터에비스의 커넥션이 있을 때
-              메인 데이터베이스 커넥션을 사용하는 빈
-               --> @Primary 로 기본설정
+        --> @Primary 보다 우선순위가 높다
 
-             서브 데이터에비스의 커넥션을 사용하는 빈
-             -> @Qualifier 지정해서 명시적으로 획득!
+        예시: 코드에서 자주 사용하는 메인 데이터베이스 커넥션을 사용하는 빈이 있고,
+              코드에서 특별한 기능으로 가끔 사용하는 서브 데이터베이스의 커넥션이 있을 때
+              메인 데이터베이스 커넥션을 사용하는 빈
+              --> @Primary 로 기본설정
+
+              서브 데이터에비스의 커넥션을 사용하는 빈
+              --> @Qualifier 지정해서 명시적으로 획득
      */
     @Autowired
     public StudentController(@Qualifier("stServiceV1") StudentService stService) {
