@@ -71,6 +71,12 @@ public class StudentController {
         List<StudentVO> stList = stService.selectAll();
         model.addAttribute("STLIST",stList);
 
+        // return "layout";
         return "student/list";
+    }
+
+    @RequestMapping(value = "/detail",method = RequestMethod.GET)
+    public String details() {
+        return "ST_DETAIL";
     }
 }
