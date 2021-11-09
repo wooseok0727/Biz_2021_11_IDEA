@@ -1,0 +1,79 @@
+form.readBook_write {
+    width: 80%;
+    margin: 10px auto;
+    padding: 1rem;
+}
+
+form.readBook_write fieldset {
+    border: 1px solid #fff842;
+    border-radius: 10px;
+    padding: 10px 30px;
+    color: #fb667a;
+}
+
+form.readBook_write legend {
+    margin: 10px;
+    padding: 0px 10px;
+    font-weight: bold;
+}
+
+form.readBook_write button {
+    display: inline-block;
+    margin: 5px;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    font-weight: bold;
+    color: #fb667a;
+    background: #fff842;
+    cursor: pointer;
+}
+
+form.readBook_write button:hover {
+
+    color: #fff;
+    background: #4dc3fa;
+}
+
+form.readBook_write div.input {
+    width: 80%;
+    display: flex;
+    padding: 5px;
+    margin: 5px auto
+}
+
+form.readBook_write div.input input,
+form.readBook_write div.input label {
+    display: inline-block;
+    margin: 0px 5px;
+    padding: 8px;
+}
+
+form.readBook_write div.input input {
+    flex: 1;
+    border: 1px solid #fb667a;
+    outline: none;
+    border-radius: 5px;
+    color: #fff;
+}
+
+form.readBook_write div.input input::placeholder {
+    color: #fff;
+}
+
+form.readBook_write div.input label {
+    text-align: right;
+    color: #4dc3fa;
+    font-weight: bold;
+}
+
+form.readBook_write div.btn_box.left {
+    text-align: left;
+    justify-content: left;
+}
+
+form.readBook_write div.btn_box.right {
+    text-align: right;
+    justify-content: right;
+}

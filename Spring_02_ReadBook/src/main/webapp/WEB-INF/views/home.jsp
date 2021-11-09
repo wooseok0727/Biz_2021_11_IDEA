@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<section>
+<section class="content">
     <h1>HOME</h1>
 </section>
-

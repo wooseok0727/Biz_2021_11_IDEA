@@ -12,9 +12,9 @@
             <param-value>/WEB-INF/spring/appServlet/*-context.xml</param-value>
         </init-param>
     </servlet>
-    
+
     <servlet-mapping>
         <servlet-name>appServlet</servlet-name>
-        <url-pattern></url-pattern>
+        <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>
