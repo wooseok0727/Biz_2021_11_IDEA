@@ -1,0 +1,40 @@
+server:
+  servlet:
+    context-path: /readbook
+
+spring:
+  mvc:
+    static-path-pattern: "/static/**"
+
+  web:
+    resources:
+      static-locations: "classpath:static/"
+      add-mappings: true
+
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+
+  jpa:
+    database-platform: "org.hibernate.dialect.MySQL8Dialect"
+    database: mysql
+
+    hibernate:
+      ddl-auto: create
+
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+    url: "jdbc:mysql://localhost:3306/ReadBookDB"
+    username: "root"
+    password: "!Biz12341234"
+
+logging:
+  level:
+    root: info
+    com.wooseok.readbook: debug
+
