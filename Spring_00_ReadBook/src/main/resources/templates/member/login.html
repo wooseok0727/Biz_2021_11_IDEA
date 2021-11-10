@@ -1,0 +1,20 @@
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{/layout}"
+>
+<section layout:fragment="content" class="content">
+  <form method="post" th:action="@{/login}">
+    <fieldset>
+      <div class="input">
+        <input placeholder="ID" name="userid"/>
+      </div>
+      <div class="input">
+        <input placeholder="PASSWORD" type="password" name="password"/>
+      </div>
+      <div class="input btn_box right">
+        <button class="btn_login">LOGIN</button>
+      </div>
+    </fieldset>
+  </form>
+</section>
+</html>

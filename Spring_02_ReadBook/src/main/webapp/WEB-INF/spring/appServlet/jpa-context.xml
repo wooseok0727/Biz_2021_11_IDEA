@@ -58,7 +58,7 @@
             </props>
         </property>
     </bean>
-    <jpa:repositories base-package="com.wooseok.readbook.repository"/>
+    <jpa:repositories base-package="com.wooseok.readbook.persistence"/>
 
 
 </beans>

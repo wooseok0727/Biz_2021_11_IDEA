@@ -1,0 +1,28 @@
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="~{/layout}"
+>
+<section layout:fragment="content" class="content">
+    <table class="book_list">
+        <thead>
+            <tr class="title_tr">
+                <th>ISBN</th>
+                <th>TITLE</th>
+                <th>COMP</th>
+                <th>AUTHOR</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:if="${BOOKS.isEmpty()}">
+                <td colspan="5" class="empty">NO DATA</td>
+            </tr>
+            <tr th:unless="${BOOKS.isEmpty()} "th:each="BOOK : ${BOOKS}" th:data-id="${BOOK.isbn}">
+                <td th:text="${BOOK.isbn}">isbn</td>
+                <td th:text="${BOOK.title}">title</td>
+                <td th:text="${BOOK.comp}">comp</td>
+                <td th:text="${BOOK.author}">author</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+</html>
