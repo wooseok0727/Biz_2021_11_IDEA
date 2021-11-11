@@ -1,5 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<section class="content">
     <form class="readBook_write" method="post">
         <fieldset>
             <legend>WRITE</legend>
@@ -25,4 +24,3 @@
             </div>
         </fieldset>
     </form>
-</section>
