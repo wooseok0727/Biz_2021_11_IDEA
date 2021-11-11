@@ -3,15 +3,15 @@ package com.wooseok.security.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HomeController {
+@RequestMapping(value = "/member")
+public class MemberController {
 
-    @ResponseBody
-    @RequestMapping(value = {"/",""},method = RequestMethod.GET)
-    public String home() {
+    // login form 을 열기 위한 URL
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public String login() {
 
-        return "Hello";
+        return "/member/login";
     }
 }
