@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.Collection;
 
 /**
@@ -33,18 +34,27 @@ import java.util.Collection;
 @ToString
 @AllArgsConstructor
 @Builder
+@Entity
+@Table(name = "tbl_members")
 public class User implements UserDetails {
 
     private static final long serialVersionUID = 1L;
 
     /* 필수로 선언해야할 변수들 */
+    @Id
+    @Column(columnDefinition = "VARCHAR(20)")
     private String username;
+
+    @Column(columnDefinition = "VARCHAR(512)", nullable = false)
     private String password;
 
     private boolean isEnabled;
     private boolean isAccountNonExpired;
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
+
+    // @Transient : table 을 생성할때 이 변수는 칼럼으로 설정하지 말라
+    @Transient
     private Collection<? extends GrantedAuthority> authorities;
 
     /* 필요에 따라 추가하여 사용하는 변수들 */

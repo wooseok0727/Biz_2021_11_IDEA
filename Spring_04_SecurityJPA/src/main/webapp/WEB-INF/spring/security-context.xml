@@ -2,7 +2,8 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:security="http://www.springframework.org/schema/security"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd">
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--
         Spring Security 에서 사용할
@@ -16,13 +17,13 @@
         <property name="cookieHttpOnly" value="false"/>
     </bean>
 
-    <security:http pattern="/static/**" security="none" />
+    <security:http pattern="/static" security="none" />
     <security:http pattern="/webjars/**" security="none" />
 
     <security:http>
         <security:intercept-url pattern="/member/mypage" access="isAuthenticated()"/>
         <security:intercept-url pattern="/member/**" access="permitAll()"/>
-        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/" access="isAuthenticated()"/>
         <security:logout />
         <security:csrf token-repository-ref="cookieCsrfTokenRepository"/>
         <security:form-login
@@ -30,7 +31,10 @@
                 login-processing-url="/login"/>
     </security:http>
 
-    <bean id="loginService" class="com.wooseok.security.service.LoginService" />
+    <!--
+        <bean id="loginService" class="com.wooseok.security.service.auth.LoginService" />
+    -->
+    <context:component-scan base-package="com.wooseok.security.service.auth"/>
 
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="loginService" />

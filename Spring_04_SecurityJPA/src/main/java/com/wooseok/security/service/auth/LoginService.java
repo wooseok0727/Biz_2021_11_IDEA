@@ -1,10 +1,11 @@
-package com.wooseok.security.service;
+package com.wooseok.security.service.auth;
 
 import com.wooseok.security.models.User;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 /**
  * security 에서 login 서비스를 수행하는 방법이 다양하다
@@ -17,6 +18,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
  */
 
 @Slf4j
+@Service("loginService")
 public class LoginService implements UserDetailsService {
 
     private final String encPassword = "$2a$04$eBwOq5KoqjqwN7Zvds4/SOT/rjH0QulBlKQ40zeu98PLFasgvIn8a";
