@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class HomeController {
 
     @ResponseBody
-    @RequestMapping(value = {"/",""},method = RequestMethod.GET)
+    @RequestMapping(value = "/",method = RequestMethod.GET)
     public String home() {
 
         return "Hello Korea";

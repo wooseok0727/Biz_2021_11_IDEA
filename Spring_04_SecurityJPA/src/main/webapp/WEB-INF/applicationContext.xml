@@ -20,8 +20,8 @@
     <security:http pattern="/webjars/**" security="none" />
 
     <security:http>
-        <security:intercept-url pattern="/member/login" access="permitAll()"/>
-        <security:intercept-url pattern="/member/register" access="permitAll()"/>
+        <security:intercept-url pattern="/member/mypage" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/member/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:logout />
         <security:csrf token-repository-ref="cookieCsrfTokenRepository"/>

@@ -9,6 +9,7 @@
 <form:form cssClass="auth_form" method="POST">
     <fieldset>
         <h2>REGISTER</h2>
+        <h3 class="error"></h3>
         <input id="username" placeholder="ID" name="username" autocomplete="off"/>
         <input id="password" placeholder="PASSWORD" type="password" name="password" autocomplete="off"/>
         <input id="passwordConfirm" placeholder="PASSWORD CONFIRM" type="password" name="passwordConfirm" autocomplete="off"/>
@@ -19,6 +20,32 @@
 
 <script>
     $(function () {
+
+        // 입력박스에서 tab 을 누르거나 마우스를 다른 곳으로 클릭했을 때
+        // lost focus
+        $("input#username").on("blur",function () {
+
+            if($(this).val().trim() == "") {
+                $("h3.error").text("");
+                return;
+            }
+            // ID 중복검사
+            $.ajax({
+                url: "${rootPath}/member/idcheck",
+                data: {username:$(this).val()}
+            })
+            .done(function (result) {
+                if(result) {
+                    // alert("이미 사용중인 ID 입니다")
+                    $("h3.error").text("이미 사용중인 ID 입니다").css("color","#fb667a");
+                    $(this).focus()
+                } else {
+                    $("h3.error").text("사용가능한 ID 입니다").css("color","#4dc3fa");
+                    $("#password").focus()
+                }
+            })
+        })
+
         $("button.btn_join_ok").on("click",function () {
             const username = $("#username")
             const password = $("#password")
