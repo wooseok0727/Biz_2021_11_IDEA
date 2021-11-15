@@ -6,13 +6,22 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--
-        Spring Security 에서 사용할
+        spring security 에 내장된 암호 검사 코드에서
+        사용할 bean
+        AuthenticatedProvider 에서 암호화된 사용자 비빌번호를
+        검증하는 용도
+        MemberService 에서 사용자의 비밀번호를 암호화 하여 Dao 에
+        전달하는 용도
     -->
     <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
         <constructor-arg index="0" value="4"/>
     </bean>
 
-
+    <!--
+        HTTP 테스트 환경에서 csrf 관련 Token 을 form 에 부착시키기 위한
+        Helper class 를 bean 으로 선언
+        이 bean 은 http:csrf 속성에 부착한다
+    -->
     <bean id="cookieCsrfTokenRepository" class="org.springframework.security.web.csrf.CookieCsrfTokenRepository">
         <property name="cookieHttpOnly" value="false"/>
     </bean>
@@ -23,7 +32,7 @@
     <security:http>
         <security:intercept-url pattern="/member/mypage" access="isAuthenticated()"/>
         <security:intercept-url pattern="/member/**" access="permitAll()"/>
-        <security:intercept-url pattern="/" access="isAuthenticated()"/>
+        <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:logout />
         <security:csrf token-repository-ref="cookieCsrfTokenRepository"/>
         <security:form-login
@@ -34,7 +43,7 @@
     <!--
         <bean id="loginService" class="com.wooseok.security.service.auth.LoginService" />
     -->
-    <context:component-scan base-package="com.wooseok.security.service.auth"/>
+    <context:component-scan base-package="com.wooseok.security.service"/>
 
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="loginService" />

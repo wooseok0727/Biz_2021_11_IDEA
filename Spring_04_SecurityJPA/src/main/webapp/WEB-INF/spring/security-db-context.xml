@@ -4,6 +4,8 @@
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/data/jpa https://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
+    <!-- jasypt 적용하여 db.username, db.password 암호화 설정 -->
+
     <!-- dataSource -->
     <bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource" >
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
@@ -26,7 +28,7 @@
         <property name="jpaProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQL8Dialect</prop>
-                <prop key="hibernate.hbm2ddl.auto">create</prop>
+                <prop key="hibernate.hbm2ddl.auto">none</prop>
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.id.new_generator_mapping">true</prop>

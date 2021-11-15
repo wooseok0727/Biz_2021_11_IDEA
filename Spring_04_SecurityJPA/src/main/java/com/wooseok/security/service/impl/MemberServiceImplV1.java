@@ -3,6 +3,7 @@ package com.wooseok.security.service.impl;
 import com.wooseok.security.models.User;
 import com.wooseok.security.repository.MemberDao;
 import com.wooseok.security.service.MemberService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,9 +12,18 @@ import java.util.List;
 public class MemberServiceImplV1 implements MemberService {
 
     private final MemberDao memberDao;
+    /**
+     * security-context.xml 에 선언된 bean 을 가져와서
+     * 와이어드 하여 사용할 준비하기
+     *
+     * bean 으로 이미 선언이 되었기 깨문에
+     * final 로 선언하고 생성자에서 주입받기
+     */
+    private final PasswordEncoder passwordEncoder;
 
-    public MemberServiceImplV1(MemberDao memberDao) {
+    public MemberServiceImplV1(MemberDao memberDao, PasswordEncoder passwordEncoder) {
         this.memberDao = memberDao;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -47,7 +57,25 @@ public class MemberServiceImplV1 implements MemberService {
     @Override
     public void insert(User user) {
 
-        memberDao.save(user);
+        /**
+         * Spring security 에서 제공하는
+         * PasswordEncoder(BCryptPasswordEncoder) 를 사용하여
+         * 사용자의 비밀번호를 암호화 하기
+         */
+        String encPassword
+                = passwordEncoder.encode(user.getPassword());
+
+        User saveVO
+                = User.builder()
+                .username(user.getUsername())
+                .password(encPassword)
+                .isAccountNonExpired(true)
+                .isEnabled(true)
+                .isCredentialsNonExpired(true)
+                .isAccountNonLocked(true)
+                .build();
+
+        memberDao.save(saveVO);
     }
 
     @Override

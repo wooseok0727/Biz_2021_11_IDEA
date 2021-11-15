@@ -1,6 +1,7 @@
 package com.wooseok.security.service.auth;
 
 import com.wooseok.security.models.User;
+import com.wooseok.security.repository.MemberDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,7 +22,13 @@ import org.springframework.stereotype.Service;
 @Service("loginService")
 public class LoginService implements UserDetailsService {
 
-    private final String encPassword = "$2a$04$eBwOq5KoqjqwN7Zvds4/SOT/rjH0QulBlKQ40zeu98PLFasgvIn8a";
+//    private final String encPassword = "$2a$04$eBwOq5KoqjqwN7Zvds4/SOT/rjH0QulBlKQ40zeu98PLFasgvIn8a";
+
+    private final MemberDao memberDao;
+
+    public LoginService(MemberDao memberDao) {
+        this.memberDao = memberDao;
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,14 +38,15 @@ public class LoginService implements UserDetailsService {
         // findById(username) 등을 수행하여
         // User 정보를 가져온다
 
-        User user = User.builder()
-                    .username("wooseok")
-                    .password(encPassword)
-                    .isAccountNonExpired(true)
-                    .isEnabled(true)
-                    .isCredentialsNonExpired(true)
-                    .isAccountNonLocked(true)
-                    .build();
+//        User user = User.builder()
+//                    .username("wooseok")
+//                    .password(encPassword)
+//                    .isAccountNonExpired(true)
+//                    .isEnabled(true)
+//                    .isCredentialsNonExpired(true)
+//                    .isAccountNonLocked(true)
+//                    .build();
+        User user = memberDao.findById(username).get();
 
         // 2. dao 에서 받은 사용자 정보가 ㅇ벗으면
         //  즉 username 에 저장된 사용자이름이
