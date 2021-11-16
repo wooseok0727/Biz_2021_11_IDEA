@@ -26,20 +26,19 @@
         <property name="cookieHttpOnly" value="false"/>
     </bean>
 
-<!--    <security:http pattern="/static" security="none" />-->
-<!--    <security:http pattern="/webjars/**" security="none" />-->
+    <security:http pattern="/static/**" security="none" />
+    <security:http pattern="/webjars/**" security="none" />
 
     <security:http>
         <security:intercept-url pattern="/member/mypage" access="isAuthenticated()"/>
         <security:intercept-url pattern="/member/**" access="permitAll()"/>
-        <security:intercept-url pattern="/static/**" access="permitAll()"/>
-        <security:intercept-url pattern="/webjars/**" access="permitAll()"/>
         <security:intercept-url pattern="/**" access="isAuthenticated()"/>
         <security:logout />
         <security:csrf token-repository-ref="cookieCsrfTokenRepository"/>
         <security:form-login
                 login-page="/member/login"
-                login-processing-url="/login"/>
+                login-processing-url="/login"
+                authentication-failure-handler-ref="loginFailService"/>
     </security:http>
 
     <!--
@@ -48,6 +47,8 @@
     <context:component-scan base-package="com.wooseok.security.service"/>
 
     <security:authentication-manager>
-        <security:authentication-provider user-service-ref="loginService" />
+        <security:authentication-provider
+                ref="authenticationProvider"
+                user-service-ref="loginService" />
     </security:authentication-manager>
 </beans>
