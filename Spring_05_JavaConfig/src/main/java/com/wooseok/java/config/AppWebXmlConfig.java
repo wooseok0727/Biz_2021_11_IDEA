@@ -13,8 +13,9 @@ public class AppWebXmlConfig extends AbstractAnnotationConfigDispatcherServletIn
     // <servlet>에 설정한 servlet-context.xml 을 초기화할 method
     @Override
     protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{ServletConfig.class, MyBatisConfig.class};
-
+        return new Class[]{
+                ServletConfig.class,
+                MyBatisConfig.class};
     }
 
     // resources mapping 에 설정한 static 폴더들에 대한 초기화할 method

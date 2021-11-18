@@ -21,12 +21,6 @@
             <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-web</artifactId>
-            <version>${spring.framework.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
@@ -49,7 +43,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
-            <version>5.2.18.RELEASE</version>
+            <version>${spring.framework.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.commons</groupId>
@@ -96,6 +90,13 @@
             <artifactId>jackson-databind</artifactId>
             <version>2.13.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jasypt/jasypt-spring31 -->
+        <dependency>
+            <groupId>org.jasypt</groupId>
+            <artifactId>jasypt-spring31</artifactId>
+            <version>1.9.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
