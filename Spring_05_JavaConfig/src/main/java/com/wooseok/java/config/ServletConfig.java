@@ -20,7 +20,11 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = {"com.wooseok.java.controller","com.wooseok.java.service"})
+@ComponentScan(basePackages = {
+        "com.wooseok.java.controller",
+        "com.wooseok.java.service",
+        "com.wooseok.java.config.beans"
+        })
 public class ServletConfig implements WebMvcConfigurer {
 
     @Override

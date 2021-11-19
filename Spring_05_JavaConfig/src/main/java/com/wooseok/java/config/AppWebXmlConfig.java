@@ -1,6 +1,9 @@
 package com.wooseok.java.config;
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+
+import javax.servlet.Filter;
 
 public class AppWebXmlConfig extends AbstractAnnotationConfigDispatcherServletInitializer {
 
@@ -23,5 +26,16 @@ public class AppWebXmlConfig extends AbstractAnnotationConfigDispatcherServletIn
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+
+    /**
+     * POST 로 전송되는 한글 데이터를 정상적으로 수신하기 위한 설정
+     */
+    @Override
+    protected Filter[] getServletFilters() {
+        CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+        encodingFilter.setEncoding("UTF-8");
+        encodingFilter.setForceEncoding(true);
+        return new Filter[] {encodingFilter};
     }
 }
